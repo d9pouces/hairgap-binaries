@@ -1,5 +1,5 @@
 ---
-- hosts: debian_10
+- hosts: debian_9
   roles:
     - hairgap
   become: true

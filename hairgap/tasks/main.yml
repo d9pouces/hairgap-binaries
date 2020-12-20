@@ -42,7 +42,7 @@
 - name: Copy binaries
   synchronize:
     src: "/tmp/hairgap/{{ item }}"
-    dest: "{{ platform }}-{{ item }}"
+    dest: "hairgap_binaries/{{ platform }}-{{ item }}"
     mode: pull
   with_items:
     - hairgapr

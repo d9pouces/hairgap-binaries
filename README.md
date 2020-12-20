@@ -1,2 +1,3 @@
 # hairgap-binaries
-Compiled binaries of https://github.com/cea-sec/hairgap
+
+Provide compiled binaries of https://github.com/cea-sec/hairgap
