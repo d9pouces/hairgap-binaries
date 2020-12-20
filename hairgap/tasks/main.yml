@@ -1,12 +1,12 @@
 - name: Install required packages
-  apt:
+  yum:
     name:
-      - build-essential
+      - '@Development Tools'
       - ca-certificates
       - clang
       - git
+    state: present
     update_cache: yes
-    install_recommends: no
 - name: Download Hairgap
   git:
     clone: yes

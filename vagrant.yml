@@ -1,5 +1,5 @@
 ---
-- hosts: debian_9
+- hosts: centos_8
   roles:
     - hairgap
   become: true
