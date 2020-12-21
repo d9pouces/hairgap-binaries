@@ -1,6 +1,6 @@
 # hairgap-binaries
 
-Provide compiled binaries of https://github.com/cea-sec/hairgap under the form of a Python package.
+Provide compiled binaries of [hairgap](https://github.com/cea-sec/hairgap) under the form of a Python package.
 
 ## building 
 
