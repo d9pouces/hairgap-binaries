@@ -8,12 +8,6 @@ import pkg_resources
 
 known_platforms = {
     "linux-x86_64": "manylinux2014_x86_64",
-    "linux-i686": "manylinux2014_x86_64",
-    "linux-aarch64": "manylinux2014_x86_64",
-    "linux-armv7l": "manylinux2014_x86_64",
-    "linux-ppc64": "manylinux2014_x86_64",
-    "linux-ppc64le": "manylinux2014_x86_64",
-    "linux-s390x": "manylinux2014_x86_64",
 }
 
 
