@@ -1,11 +1,13 @@
 # hairgap-binaries
 
-Provide compiled binaries of https://github.com/cea-sec/hairgap
-
+Provide compiled binaries of https://github.com/cea-sec/hairgap under the form of a Python package.
 
 ## building 
 
-python3 (>= 3.5), wheel (in the current virtualenv), vagrant with the scp plugin are required.
+requirements:
+* python3 (>= 3.5),
+* wheel (in the current virtualenv),
+* vagrant with the scp plugin.
 
 ```bash
 # install the scp plugin
