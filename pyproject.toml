@@ -1,0 +1,61 @@
+# This file is part of Interdiode
+# Copyright (c) 2020-2023 Matthieu Gallet <matthieu.gallet@19pouces.net>
+# All Rights Reserved
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core"]
+
+[tool.poetry]
+authors = ["Matthieu Gallet <github@19pouces.net>"]
+classifiers = [
+  'Development Status :: 5 - Production/Stable',
+  'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
+  'Operating System :: POSIX :: Linux',
+  'Operating System :: Unix',
+  'Natural Language :: English',
+  'Natural Language :: French',
+  'Programming Language :: Python :: 3 :: Only',
+  'Programming Language :: Python :: 3.6',
+  'Programming Language :: Python :: 3.7',
+  'Programming Language :: Python :: 3.8',
+  'Programming Language :: Python :: 3.9',
+  'Programming Language :: Python :: 3.10',
+  'Programming Language :: Python :: 3.11',
+  'Programming Language :: Python :: 3.12'
+]
+description = "Provide compiled binaries of https://github.com/cea-sec/hairgap"
+documentation = 'https://github.com/d9pouces/hairgap-binaries'
+license = "GPL v3"
+maintainers = ["Matthieu Gallet <github@19pouces.net>"]
+name = "hairgap_binaries"
+packages = [{include = "hairgap_binaries"}]
+readme = "README.md"
+repository = 'https://github.com/d9pouces/hairgap-binaries'
+version = "1.1.0"
+
+
+[tool.tox]
+legacy_tox_ini = """
+
+[tox:tox]
+envlist = py
+minversion = 3.4.0
+
+[testenv:py]
+commands =
+    docker buildx build . -t hairgap-binaries-build
+    docker run --rm -v {env:PWD}/hairgap_binaries:/dist hairgap-binaries-build /bin/sh -c 'cp /tmp/hairgap/hairgapr /dist/$(python3 -c "from sysconfig import get_platform; print(get_platform())")-hairgapr'
+    docker run --rm -v {env:PWD}/hairgap_binaries:/dist hairgap-binaries-build /bin/sh -c 'cp /tmp/hairgap/hairgaps /dist/$(python3 -c "from sysconfig import get_platform; print(get_platform())")-hairgaps'
+    python3 -m poetry build
+deps =
+    packaging
+    packaging.utils
+    poetry
+    setuptools
+allowlist_externals =
+    docker
+passenv =
+    PWD
+
+"""
