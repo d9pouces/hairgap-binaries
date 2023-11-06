@@ -34,25 +34,21 @@ readme = "README.md"
 repository = 'https://github.com/d9pouces/hairgap-binaries'
 version = "1.1.0"
 
-
 [tool.tox]
 legacy_tox_ini = """
 
 [tox:tox]
-envlist = py
+envlist = py312-packaging
 minversion = 3.4.0
 
-[testenv:py]
+[testenv:py312-packaging]
 commands =
     docker buildx build . -t hairgap-binaries-build
     docker run --rm -v {env:PWD}/hairgap_binaries:/dist hairgap-binaries-build /bin/sh -c 'cp /tmp/hairgap/hairgapr /dist/$(python3 -c "from sysconfig import get_platform; print(get_platform())")-hairgapr'
     docker run --rm -v {env:PWD}/hairgap_binaries:/dist hairgap-binaries-build /bin/sh -c 'cp /tmp/hairgap/hairgaps /dist/$(python3 -c "from sysconfig import get_platform; print(get_platform())")-hairgaps'
     python3 -m poetry build
 deps =
-    packaging
-    packaging.utils
     poetry
-    setuptools
 allowlist_externals =
     docker
 passenv =

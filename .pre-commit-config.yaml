@@ -1,0 +1,99 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.5.0
+  hooks:
+  - id: check-byte-order-marker
+    exclude: ^(id_tests/data/.*|npm/node_modules/.*)
+  - id: check-docstring-first
+    exclude: ^(id_tests/data/.*|npm/node_modules/.*)
+  - id: end-of-file-fixer
+    exclude: ^(id_tests/data/.*|npm/node_modules/.*)
+  - id: fix-byte-order-marker
+    exclude: ^(id_tests/data/.*|npm/node_modules/.*)
+  - id: check-ast
+    exclude: ^(id_tests/data/.*|npm/node_modules/.*)
+  - id: check-case-conflict
+    exclude: ^(id_tests/data/.*|npm/node_modules/.*)
+  - id: check-executables-have-shebangs
+    exclude: ^(id_tests/data/.*|npm/node_modules/.*)
+  - id: check-json
+    exclude: ^(id_tests/data/.*|npm/node_modules/.*)
+  - id: check-merge-conflict
+    exclude: ^(id_tests/data/.*|npm/node_modules/.*)
+  - id: check-toml
+    exclude: ^(id_tests/data/.*|npm/node_modules/.*)
+  - id: check-yaml
+    exclude: ^(id_tests/data/.*|npm/node_modules/.*)
+- repo: https://github.com/psf/black
+  rev: 23.10.1
+  hooks:
+  - id: black
+    args: [--force-exclude, interdiode/sources/admin.py]
+    exclude: ^(id_tests/data/.*|npm/node_modules/.*)
+- repo: https://github.com/PyCQA/flake8
+  rev: 6.1.0
+  hooks:
+  - id: flake8
+    exclude: ^(id_tests/data/.*|npm/node_modules/.*)
+- repo: https://github.com/PyCQA/pydocstyle
+  rev: 6.3.0
+  hooks:
+  - id: pydocstyle
+    exclude: ^(id_tests/data/.*|npm/node_modules/.*)
+- repo: https://github.com/PyCQA/isort
+  rev: 5.12.0
+  hooks:
+  - id: isort
+    exclude: ^(id_tests/data/.*|npm/node_modules/.*)
+- repo: https://github.com/pre-commit/pygrep-hooks
+  rev: v1.10.0
+  hooks:
+  - id: rst-inline-touching-normal
+    exclude: ^(id_tests/data/.*|npm/node_modules/.*)
+  - id: rst-directive-colons
+    exclude: ^(id_tests/data/.*|npm/node_modules/.*)
+  - id: rst-backticks
+    exclude: ^(id_tests/data/.*|npm/node_modules/.*)
+  - id: python-no-log-warn
+    exclude: ^(id_tests/data/.*|npm/node_modules/.*)
+  - id: python-no-eval
+    exclude: ^(id_tests/data/.*|npm/node_modules/.*)
+  - id: python-check-mock-methods
+    exclude: ^(id_tests/data/.*|npm/node_modules/.*)
+  - id: python-check-blanket-noqa
+    exclude: ^(id_tests/data/.*|npm/node_modules/.*)
+- repo: https://github.com/commitizen-tools/commitizen
+  rev: 3.12.0
+  hooks:
+  - id: commitizen
+    args: []
+    exclude: ^(id_tests/data/.*|npm/node_modules/.*)
+- repo: https://github.com/PyCQA/bandit
+  rev: 1.7.5
+  hooks:
+  - id: bandit
+    args: [-s, 'B404,B405,B506,B703,B308,B603']
+    exclude: ^(id_tests/.*|npm/node_modules/.*|tools/.*|doc/.*|interdiode/static/vendor/.*)
+- repo: https://github.com/shellcheck-py/shellcheck-py
+  rev: v0.9.0.6
+  hooks:
+  - id: shellcheck
+    exclude: ^(id_tests/.*|npm/node_modules/.*|tools/.*|doc/.*)
+- repo: https://github.com/d9pouces/mybestpractices
+  rev: 0.3.4
+  hooks:
+  - id: mybestpractices-git-autotag
+    args: [--only-branch, 'dev,master']
+- repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
+  rev: v2.11.0
+  hooks:
+  - id: pretty-format-ini
+    args: [--autofix]
+    exclude: ^(id_tests/data/.*|npm/node_modules/.*|interdiode/static/vendor/.*|interdiode/static/js/.*)
+  - id: pretty-format-toml
+    args: [--autofix]
+    exclude: ^(id_tests/data/.*|npm/node_modules/.*|interdiode/static/vendor/.*|interdiode/static/js/.*)
+default_language_version:
+  python: python3.9
