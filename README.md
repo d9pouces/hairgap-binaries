@@ -25,9 +25,9 @@ assert os.path.isfile(get_hairgaps())
 
 Requirements:
 * python3 (>= 3.5),
-* wheel Python package (in the current virtualenv) for creating the .whl package,
-* vagrant with the scp plugin.
+* tox,
+* docker.
 
 ```bash
-tox -e py
+tox -e py312-packaging
 ```
