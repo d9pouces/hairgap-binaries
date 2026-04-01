@@ -19,7 +19,8 @@ classifiers = [
   'Programming Language :: Python :: 3.10',
   'Programming Language :: Python :: 3.11',
   'Programming Language :: Python :: 3.12',
-  'Programming Language :: Python :: 3.13'
+  'Programming Language :: Python :: 3.13',
+  'Programming Language :: Python :: 3.14'
 ]
 description = "Provide compiled binaries of https://github.com/cea-sec/hairgap"
 documentation = 'https://github.com/d9pouces/hairgap-binaries'
@@ -29,7 +30,7 @@ name = "hairgap_binaries"
 packages = [{include = "hairgap_binaries"}]
 readme = "README.md"
 repository = 'https://github.com/d9pouces/hairgap-binaries'
-version = "1.1.0"
+version = "1.1.1"
 
 [tool.tox]
 legacy_tox_ini = """
@@ -40,9 +41,12 @@ minversion = 3.4.0
 
 [testenv:py312-packaging]
 commands =
-    docker buildx build . -t hairgap-binaries-build
-    docker run --rm -v {env:PWD}/hairgap_binaries:/dist hairgap-binaries-build /bin/sh -c 'cp /tmp/hairgap/hairgapr /dist/$(python3 -c "from sysconfig import get_platform; print(get_platform())")-hairgapr'
-    docker run --rm -v {env:PWD}/hairgap_binaries:/dist hairgap-binaries-build /bin/sh -c 'cp /tmp/hairgap/hairgaps /dist/$(python3 -c "from sysconfig import get_platform; print(get_platform())")-hairgaps'
+    docker buildx build . -t hairgap-binaries-build --platform linux/amd64
+    docker run --platform linux/amd64 --rm -v ./hairgap_binaries:/dist hairgap-binaries-build /bin/sh -c 'cp /tmp/hairgap/hairgapr /dist/$(python3 -c "from sysconfig import get_platform; print(get_platform())")-hairgapr'
+    docker run --platform linux/amd64 --rm -v ./hairgap_binaries:/dist hairgap-binaries-build /bin/sh -c 'cp /tmp/hairgap/hairgaps /dist/$(python3 -c "from sysconfig import get_platform; print(get_platform())")-hairgaps'
+    docker buildx build . -t hairgap-binaries-build --platform linux/arm64
+    docker run --platform linux/arm64 --rm -v ./hairgap_binaries:/dist hairgap-binaries-build /bin/sh -c 'cp /tmp/hairgap/hairgapr /dist/$(python3 -c "from sysconfig import get_platform; print(get_platform())")-hairgapr'
+    docker run --platform linux/arm64 --rm -v ./hairgap_binaries:/dist hairgap-binaries-build /bin/sh -c 'cp /tmp/hairgap/hairgaps /dist/$(python3 -c "from sysconfig import get_platform; print(get_platform())")-hairgaps'
     python3 -m poetry build
 deps =
     poetry

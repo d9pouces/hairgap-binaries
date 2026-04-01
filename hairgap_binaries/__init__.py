@@ -23,7 +23,7 @@ import sysconfig
 from contextlib import ExitStack
 from typing import Optional
 
-known_platforms = {"linux-x86_64"}
+known_platforms = {"linux-x86_64", "linux-aarch64"}
 
 
 def get_hairgapr(suffix="hairgapr") -> Optional[str]:

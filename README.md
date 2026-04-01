@@ -9,7 +9,7 @@ python3 -m pip install hairgap-binaries
 ```
 
 `hairgap-binaries` only provides `get_hairgapr` and `get_hairgaps` functions that return absolute paths of `hairgapr` and `hairgaps`.
-If there are not available for your architecture (e.g., anything else than Linux x86_64), `None` is returned. 
+If they do not are available for your architecture (e.g., anything else than Linux x86_64), `None` is returned. 
 
 ```python
 import os
